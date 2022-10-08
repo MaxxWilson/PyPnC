@@ -142,3 +142,8 @@ tags
 data
 video
 configuration.h
+
+# pnc_ros build files
+build/
+install/
+log/

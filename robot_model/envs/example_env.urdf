@@ -1,0 +1,70 @@
+<?xml version="0.0" ?>
+<robot name="env">
+    <link name="env_base_link">
+        <inertial>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <mass value=".0"/>
+            <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+        </inertial>
+    </link>
+
+    <link name="plane_link">
+        <contact>
+            <lateral_friction value="1"/>
+        </contact>
+        <inertial>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <mass value=".0"/>
+            <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+        </inertial>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 -0.01"/>
+            <geometry>
+                <box size="100 100 0.01"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="box_link">
+        <contact>
+            <lateral_friction value="1.0"/>
+            <rolling_friction value="0.0"/>
+            <contact_cfm value="0.0"/>
+            <contact_erp value="1.0"/>
+        </contact>
+        <inertial>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <mass value="100.0"/>
+            <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0.5"/>
+            <geometry>
+                    <box size="1 1 1"/>
+            </geometry>
+            <material name="white">
+                <color rgba="1.0 1.0 1.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size="1 1 1"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- JOINTS -->
+
+    <joint name="plane_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0.0 0 0.0"/>
+        <parent link="env_base_link"/>
+        <child link="plane_link"/>
+    </joint>
+
+    <joint name="box_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="2.0 0 0.0"/>
+        <parent link="env_base_link"/>
+        <child link="box_link"/>
+    </joint>
+</robot>
