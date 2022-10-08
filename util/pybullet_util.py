@@ -206,15 +206,20 @@ def set_motor_impedance_single_pd(robot, joint_id, command, kp, kd):
                                 forces=list(trq_applied.values()))
 
 
-def set_motor_trq(robot, joint_id, trq_cmd):
+def set_motor_trq(robot, joint_id, command):
+    assert len(joint_id) == len(command['joint_trq'])
     trq_applied = OrderedDict()
-    for joint_name, trq_des in trq_cmd.items():
+    for (joint_name, pos_des), (_, vel_des), (_, trq_des) in zip(
+            command['joint_pos'].items(), command['joint_vel'].items(),
+            command['joint_trq'].items()):
+        joint_state = p.getJointState(robot, joint_id[joint_name])
+        joint_pos, joint_vel = joint_state[0], joint_state[1]
         trq_applied[joint_id[joint_name]] = trq_des
 
     p.setJointMotorControlArray(robot,
                                 trq_applied.keys(),
                                 controlMode=p.TORQUE_CONTROL,
-                                forces=list(trq_applied.values()))
+                                forces=trq_applied.values())
 
 
 def set_motor_pos(robot, joint_id, pos_cmd):
