@@ -12,7 +12,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/multisense_sl_description/meshes/head.obj" />
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/multisense_sl_description/meshes/head.obj" />
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -44,7 +44,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_unplugged/r_clav.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_unplugged/r_clav.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -77,7 +77,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_v3/r_farm.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_v3/r_farm.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -104,7 +104,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_unplugged/l_foot.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_unplugged/l_foot.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -143,7 +143,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_v3/r_hand.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_v3/r_hand.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -193,7 +193,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_v3/r_larm.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_v3/r_larm.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -220,7 +220,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_unplugged/l_lglut.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_unplugged/l_lglut.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -253,7 +253,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_unplugged/l_lleg.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_unplugged/l_lleg.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -274,7 +274,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_unplugged/r_scap.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_unplugged/r_scap.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -313,7 +313,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_unplugged/l_talus.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_unplugged/l_talus.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -340,7 +340,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_unplugged/r_uarm.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_unplugged/r_uarm.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -373,7 +373,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_unplugged/l_uglut.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_unplugged/l_uglut.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -400,7 +400,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_unplugged/l_uleg.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_unplugged/l_uleg.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -448,7 +448,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_unplugged/ltorso.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_unplugged/ltorso.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -470,7 +470,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_unplugged/mtorso.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_unplugged/mtorso.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -491,7 +491,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_unplugged/pelvis.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_unplugged/pelvis.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -543,7 +543,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_unplugged/r_clav.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_unplugged/r_clav.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -576,7 +576,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_v3/r_farm.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_v3/r_farm.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -603,7 +603,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_unplugged/r_foot.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_unplugged/r_foot.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -642,7 +642,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_v3/r_hand.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_v3/r_hand.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -692,7 +692,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_v3/r_larm.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_v3/r_larm.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -725,7 +725,7 @@
     </collision>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_unplugged/r_lglut.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_unplugged/r_lglut.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -752,7 +752,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_unplugged/r_lleg.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_unplugged/r_lleg.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -773,7 +773,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_unplugged/r_scap.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_unplugged/r_scap.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -812,7 +812,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_unplugged/r_talus.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_unplugged/r_talus.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -839,7 +839,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_unplugged/r_uarm.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_unplugged/r_uarm.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -872,7 +872,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_unplugged/r_uglut.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_unplugged/r_uglut.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -899,7 +899,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_unplugged/r_uleg.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_unplugged/r_uleg.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -948,7 +948,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="file://$(find pnc_ros)/resource/atlas/meshes_unplugged/utorso.obj" scale="1 1 1"/>
+        <mesh filename="file://$(find pnc_ros)/urdf/atlas/meshes_unplugged/utorso.obj" scale="1 1 1"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />

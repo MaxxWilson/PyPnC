@@ -9,7 +9,7 @@ from ament_index_python import get_package_share_directory
 def generate_launch_description():
     pnc_share_dir = get_package_share_directory("pnc_ros")
     pnc_base_dir = "/".join(pnc_share_dir.split("/")[:-4]) + "/"
-    default_robot_urdf_path = os.path.join(pnc_share_dir, "resource", "atlas", "atlas.urdf"),
+    default_robot_urdf_path = os.path.join(pnc_share_dir, "urdf", "atlas", "atlas.urdf"),
     default_env_urdf_path = os.path.join(pnc_base_dir, "robot_model", "envs", "example_env.urdf")
     default_rviz_config_path = os.path.join(pnc_share_dir, 'rviz/pnc_config.rviz')
 
