@@ -145,5 +145,7 @@ configuration.h
 
 # pnc_ros build files
 build/
+build_towr/
 install/
 log/
+.vscode/

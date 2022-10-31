@@ -56,6 +56,8 @@ int main() {
   // exit(0);
   solver->SetOption("jacobian_approximation", "exact");
   solver->SetOption("max_cpu_time", 1000.0);
+  solver->SetOption("print_level", 6);
+  solver->SetOption("print_timing_statistics", true);
   clock.start();
   solver->Solve(nlp);
   time_solving = clock.stop();

@@ -547,6 +547,7 @@ if __name__ == "__main__":
     s = 0.
     b_ik = False
     b_regressor_trained = False
+    train = True
     while (1):
 
         # Get Keyboard Event
@@ -557,7 +558,8 @@ if __name__ == "__main__":
             # f, jac_f = generate_casadi_func(crbi_model, input_mean, input_std,
             # output_mean, output_std, True)
             pass
-        elif pybullet_util.is_key_triggered(keys, '5'):
+        elif pybullet_util.is_key_triggered(keys, '5') or train:
+            train = False
             # Generate Dataset
             print("-" * 80)
             print("Pressed 5: Train CRBI Regressor")
