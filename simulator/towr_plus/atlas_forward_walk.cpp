@@ -56,8 +56,8 @@ int main() {
   // exit(0);
   solver->SetOption("jacobian_approximation", "exact");
   solver->SetOption("max_cpu_time", 1000.0);
-  solver->SetOption("print_level", 6);
-  solver->SetOption("print_timing_statistics", true);
+  // solver->SetOption("print_level", 6);
+  // solver->SetOption("print_timing_statistics", "yes");
   clock.start();
   solver->Solve(nlp);
   time_solving = clock.stop();
@@ -69,6 +69,26 @@ int main() {
   // sol.print_solution();
   sol.to_yaml();
   printf("Takes %f seconds\n", 1e-3 * time_solving);
+
+  std::cout << "---------- Stats ----------" << std::endl;
+  std::cout << "Iteration Count: " << nlp.GetIterationCount() << std::endl;
+  
+
+
+  int i = 4;
+  // for(int i = 0; i < nlp.GetIterationCount(); i++){
+    nlp.SetOptVariables(i);
+    auto variables = nlp.GetVariableValues();
+    auto cost = nlp.EvaluateCostFunction(variables.data());
+    auto constraints = nlp.EvaluateConstraints(variables.data());
+    std::cout << "Number of Constraints: " << constraints.size() << std::endl;
+
+    auto constraint_components = nlp.GetConstraints().GetComponents();
+    for(auto &c: constraint_components){
+      std::cout << c->GetName() << ", " << c->GetRows() << std::endl;
+    }
+  // }
+
 
   return 0;
 }

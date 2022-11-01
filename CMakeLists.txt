@@ -17,9 +17,11 @@ endif()
 ## Build ##
 ###########
 set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_BUILD_TYPE DEBUG)
+# set(CMAKE_BUILD_TYPE DEBUG)
+set(CMAKE_BUILD_TYPE Release)
 IF(NOT CMAKE_BUILD_TYPE MATCHES Release)
   message(STATUS "CMAKE_BUILD_TYPE not set to Release -> impacts performance")
+  add_compile_options(-g -O0)
 endif()
 
 include_directories("${PROJECT_SOURCE_DIR}")
