@@ -58,6 +58,7 @@ int main() {
   solver->SetOption("max_cpu_time", 1000.0);
   // solver->SetOption("print_level", 6);
   // solver->SetOption("print_timing_statistics", "yes");
+  std::cout << "Start Solve" << std::endl;
   clock.start();
   solver->Solve(nlp);
   time_solving = clock.stop();
@@ -78,11 +79,16 @@ int main() {
   int i = 4;
   // for(int i = 0; i < nlp.GetIterationCount(); i++){
     nlp.SetOptVariables(i);
-    auto variables = nlp.GetVariableValues();
-    auto cost = nlp.EvaluateCostFunction(variables.data());
-    auto constraints = nlp.EvaluateConstraints(variables.data());
-    std::cout << "Number of Constraints: " << constraints.size() << std::endl;
+    auto variable_values = nlp.GetVariableValues();
+    auto constraints = nlp.EvaluateConstraints(variable_values.data());
 
+    std::cout << std::endl << "Accessing Opt Variables" << std::endl;
+    auto variables = nlp.GetOptVariables()->GetComponents();
+    for(auto &v: variables){
+      std::cout << v->GetName() << ", " << v->GetRows() << std::endl;
+    }
+
+    std::cout << std::endl << "Accessing Constraints" << std::endl;
     auto constraint_components = nlp.GetConstraints().GetComponents();
     for(auto &c: constraint_components){
       std::cout << c->GetName() << ", " << c->GetRows() << std::endl;
