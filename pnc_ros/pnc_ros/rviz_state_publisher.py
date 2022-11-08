@@ -6,10 +6,13 @@ sys.path.append(cwd)
 
 import rclpy
 from rclpy.node import Node
+import numpy as np
 
 from sensor_msgs.msg import JointState
+from sensor_msgs.msg import PointCloud
 from tf2_msgs.msg import TFMessage
 from geometry_msgs.msg import TransformStamped
+from geometry_msgs.msg import Point32
 
 from config.atlas_config import PnCConfig
 
@@ -19,6 +22,7 @@ class RVizStatePublisher():
         self.node = Node("rviz_state_publisher")
         self.joint_state_pub = self.node.create_publisher(JointState, "/joint_states", 10)
         self.transform_pub = self.node.create_publisher(TFMessage, "/tf", 10)
+        self.point_cloud_pub = self.node.create_publisher(PointCloud, "/point_cloud", 10)
 
         # Pinocchio as Dynamics Library
         from pnc.robot_system.pinocchio_robot_system import PinocchioRobotSystem
@@ -118,6 +122,21 @@ class RVizStatePublisher():
             sensor_data["base_joint_lin_vel"],
             sensor_data["base_joint_ang_vel"], sensor_data["joint_pos"],
             sensor_data["joint_vel"])
+
+    def publish_point_cloud(self, point_cloud):
+        msg = PointCloud()
+        msg.header.frame_id = "world"
+        msg.header.stamp = self.node.get_clock().now().to_msg()
+
+        num_points = np.max(np.shape(point_cloud))
+        for i in range(num_points):
+            point_msg = Point32()
+            point_msg.x = point_cloud[0, i]
+            point_msg.y = point_cloud[1, i]
+            point_msg.z = point_cloud[2, i]
+            msg.points.append(point_msg)
+
+        self.point_cloud_pub.publish(msg)
 
     def shutdown(self):
         self.node.destroy_node()

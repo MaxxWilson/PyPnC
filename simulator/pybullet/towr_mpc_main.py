@@ -27,6 +27,8 @@ from pnc.atlas_pnc.atlas_interface import AtlasInterface
 from util import pybullet_util
 from util import util
 from util import liegroup
+from vision.height_map import HeightMap
+from util.pybullet_camera_util import Camera, PointCloud 
 
 from pnc_ros.rviz_state_publisher import RVizStatePublisher
 
@@ -110,10 +112,14 @@ if __name__ == "__main__":
     interface = AtlasInterface()
     rviz_state_pub = RVizStatePublisher(robot_urdf_path, mesh_path)
 
+    # Construct Heightmap
+    heightmap = HeightMap(1000, 100, 15, 1.5)
+
     # Run Sim
     t = 0
     dt = SimConfig.CONTROLLER_DT
     count = 0
+    camera_img_count = 0
 
     while (1):
 
@@ -159,9 +165,42 @@ if __name__ == "__main__":
         # Apply Trq
         pybullet_util.set_motor_trq(robot, joint_id, command)
 
+        #### CAMERA ####
+        if count % (SimConfig.CAMERA_DT / SimConfig.CONTROLLER_DT) == 0:
+            # fov = 60
+            # nearval = 0.01
+            # farval = 1000
+            # camera_img = pybullet_util.get_camera_image_from_link(
+                # robot, link_id['head'], 128, 128, fov, nearval, farval)
+            # depth_buffer = camera_img[3]
+            # view_matrix = camera_img[5]
+            # projection_matrix = camera_img[6]
+            # camera_pos = camera_img[7]
+            link_info = p.getLinkState(robot, link_id['head'], 1, 1)
+            cam_pos = link_info[0]
+            width = 128
+            height = 128
+            cam = Camera(width,height)
+            cam.set_view_matrix_from_robot_link(robot, link_id['head'])
+            cam.set_projection_matrix(fovy=60, aspect=1, near=0.01, far=10)
+
+            rgb_img, depth_img, seg_img = cam.get_pybullet_image()
+            pcl_points, pcl_colors = cam.unproject_canvas_to_pointcloud(rgb_img,
+                    depth_img)
+
+            max_range_indices = []
+            for i in range(np.max(np.shape(pcl_points))):
+                pcl_points[2, i] = cam_pos[2] - (pcl_points[2, i] - cam_pos[2])
+                if(np.linalg.norm(pcl_points[:, i] - cam_pos) > 9.95):
+                    max_range_indices.append(i)
+            point_cloud_clipped = np.delete(pcl_points, max_range_indices, 1)
+
+        #### RVIZ ####
         rviz_state_pub.update_robot_model(sensor_data)
+        rviz_state_pub.publish_point_cloud(point_cloud_clipped)
         rviz_state_pub.publish_robot_state()
 
+        #### SIMULATION ####
         p.stepSimulation()
 
         # time.sleep(dt)

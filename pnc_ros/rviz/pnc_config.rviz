@@ -9,6 +9,7 @@ Panels:
         - /RobotModel1/Links1
         - /RobotModel2/Links1
         - /TF1
+        - /PointCloud
       Splitter Ratio: 0.5
     Tree Height: 557
 Visualization Manager:
@@ -29,7 +30,7 @@ Visualization Manager:
         Reliability Policy: Reliable
         Value: /robot_description
       Enabled: true
-      Name: RobotModel
+      Name: Robot
       Visual Enabled: true
     - Alpha: 1.0
       Class: rviz_default_plugins/RobotModel
@@ -40,8 +41,21 @@ Visualization Manager:
         Reliability Policy: Reliable
         Value: /environment_description
       Enabled: true
-      Name: RobotModel
+      Name: Environment
       Visual Enabled: true
+    - Alpha: 1.0
+      Class: rviz_default_plugins/PointCloud
+      Name: Point Cloud
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /point_cloud
+      Style: Points
+      Color Transformer: AxisColor
+      Axis: Z
+      Enabled: true
   Enabled: true
   Global Options:
     Background Color: 255; 255; 255
