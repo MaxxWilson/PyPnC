@@ -124,6 +124,10 @@ class RVizStatePublisher():
             sensor_data["joint_vel"])
 
     def publish_point_cloud(self, point_cloud):
+        msg = self.get_point_cloud_msg(point_cloud)
+        self.point_cloud_pub.publish(msg)
+
+    def get_point_cloud_msg(self, point_cloud):
         msg = PointCloud()
         msg.header.frame_id = "world"
         msg.header.stamp = self.node.get_clock().now().to_msg()
@@ -135,8 +139,7 @@ class RVizStatePublisher():
             point_msg.y = point_cloud[1, i]
             point_msg.z = point_cloud[2, i]
             msg.points.append(point_msg)
-
-        self.point_cloud_pub.publish(msg)
+        return msg
 
     def shutdown(self):
         self.node.destroy_node()

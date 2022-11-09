@@ -57,7 +57,7 @@ int main() {
   solver->SetOption("jacobian_approximation", "exact");
   solver->SetOption("max_cpu_time", 1000.0);
   // solver->SetOption("print_level", 6);
-  // solver->SetOption("print_timing_statistics", "yes");
+  solver->SetOption("print_timing_statistics", "yes");
   std::cout << "Start Solve" << std::endl;
   clock.start();
   solver->Solve(nlp);
@@ -71,10 +71,12 @@ int main() {
   sol.to_yaml();
   printf("Takes %f seconds\n", 1e-3 * time_solving);
 
+
+  
   std::cout << "---------- Stats ----------" << std::endl;
   std::cout << "Iteration Count: " << nlp.GetIterationCount() << std::endl;
-  
-
+  std::cout << "Length of Motion: " << formulation.params_.GetTotalTime() << std::endl;
+  std::cout << "Length of Motion: " << formulation.params_.GetTotalTime() << std::endl;
 
   int i = 4;
   // for(int i = 0; i < nlp.GetIterationCount(); i++){
@@ -86,12 +88,22 @@ int main() {
     auto variables = nlp.GetOptVariables()->GetComponents();
     for(auto &v: variables){
       std::cout << v->GetName() << ", " << v->GetRows() << std::endl;
+      // if(v->GetName() == "ee-motion-lin_0"){
+      //   int i = 0;
+      //   std::cout << v->GetValues() << std::endl;
+      // }
+    }
+
+    std::cout << std::endl << "Accessing Costs" << std::endl;
+    auto costs = nlp.GetCosts().GetComponents();
+    for(auto &c: costs){
+      std::cout << c->GetName() << ", " << c->GetRows() << std::endl;
     }
 
     std::cout << std::endl << "Accessing Constraints" << std::endl;
     auto constraint_components = nlp.GetConstraints().GetComponents();
-    for(auto &c: constraint_components){
-      std::cout << c->GetName() << ", " << c->GetRows() << std::endl;
+    for(auto &constraint: constraint_components){
+      std::cout << constraint->GetName() << ", " << constraint->GetRows() << std::endl;
     }
   // }
 

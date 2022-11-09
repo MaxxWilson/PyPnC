@@ -2,8 +2,8 @@ solver: "ipopt"
 
 locomotion_task:
 
-    initial_base_lin: [0., 0., 0.766, 0., 0., 0.]
-    initial_base_ang: [0., 0., 0., 0., 0., 0.]
+    initial_base_lin: [0., 0., 0.766, 0., 0., 0.]   # XYZ Position / Velocity
+    initial_base_ang: [0., 0., 0., 0., 0., 0.]      # RPY Angle / Velocity
 
     # Left Foot: 0, Right Foot: 1
     initial_ee_motion_lin:
@@ -13,8 +13,8 @@ locomotion_task:
         0: [0., 0., 0.]
         1: [0., 0., 0.]
 
-    final_base_lin: [0.8, 0.0, 0.766, 0., 0., 0.]
-    final_base_ang: [0., 0., 0., 0., 0., 0.]
+    final_base_lin: [0.8, 0.0, 0.766, 0., 0., 0.]   # XYZ Position / Velocity
+    final_base_ang: [0., 0., 0., 0., 0., 0.]        # RPY Angle / Velocity
 
     terrain_type: "flat_ground"
 
@@ -22,13 +22,13 @@ locomotion_param:
 
     duration_base_polynomial: 0.1
     force_polynomials_per_stance_phase: 3
-    ee_polynomials_per_swing_phase: 2
+    ee_polynomials_per_swing_phase: 2       # Up and then down
     force_limit_in_normal_direction: 1000.
-    dt_constraint_range_of_motion: 0.08
-    dt_constraint_dynamic: 0.1
-    dt_constraint_base_motion: 0.025
+    dt_constraint_range_of_motion: 0.08     # Timestep for constraint enforcement
+    dt_constraint_dynamic: 0.1              # Timestep for constraint enforcement
+    dt_constraint_base_motion: 0.025        # Timestep for constraint enforcement
     b_optimize_timings: true
-    bound_phase_duration: [0.25, 0.25]
+    bound_phase_duration: [0.25, 0.25]      # Min/Max on phase duration for EEs
 
     ## =========================================================================
     ## Consistency with DCM Planner
@@ -43,7 +43,7 @@ locomotion_param:
     # For example
     # LF: {1.5ds, ss, 2ds+ss, ss, 2ds+ss, ss, ds+b}
     # RF: {2.5ds+ss, ss, 2ds+ss, ss, 2ds+ss+b}
-    ee_phase_durations:
+    ee_phase_durations:     # Sets number of steps and initial duration
         0: [0.675, 0.75, 1.65, 0.75, 1.65, 0.75, 1.929252]
         1: [1.875, 0.75, 1.65, 0.75, 1.65, 0.75, 0.729252]
     ee_in_contact_at_start:

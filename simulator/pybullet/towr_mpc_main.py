@@ -187,12 +187,16 @@ if __name__ == "__main__":
             rgb_img, depth_img, seg_img = cam.get_pybullet_image()
             pcl_points, pcl_colors = cam.unproject_canvas_to_pointcloud(rgb_img,
                     depth_img)
-
             max_range_indices = []
             for i in range(np.max(np.shape(pcl_points))):
+                # Transform points from inverted head frame to world frame
                 pcl_points[2, i] = cam_pos[2] - (pcl_points[2, i] - cam_pos[2])
-                if(np.linalg.norm(pcl_points[:, i] - cam_pos) > 9.95):
+
+                # Find point indices at max depth range
+                if(np.linalg.norm(pcl_points[:, i] - cam_pos) > 10 - 0.01):
                     max_range_indices.append(i)
+                    
+            # Clip point cloud to max viewing range
             point_cloud_clipped = np.delete(pcl_points, max_range_indices, 1)
 
         #### RVIZ ####
