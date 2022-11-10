@@ -30,12 +30,6 @@ int main() {
   formulation.from_locomotion_task(task);
   // formulation.initialize_from_dcm_planner("dubins");
 
-  formulation.params_.constraints_.erase(
-      std::remove(formulation.params_.constraints_.begin(),
-                  formulation.params_.constraints_.end(),
-                  Parameters::EndeffectorRom),
-      formulation.params_.constraints_.end());
-
   // Solve
   ifopt::Problem nlp;
   SplineHolder solution;
@@ -73,6 +67,46 @@ int main() {
   // sol.print_solution();
   sol.to_yaml();
   printf("Takes %f seconds\n", 1e-3 * time_solving);
+
+  std::cout << "---------- Stats ----------" << std::endl;
+  std::cout << "Iteration Count: " << nlp.GetIterationCount() << std::endl;
+  std::cout << "Length of Motion: " << formulation.params_.GetTotalTime() << std::endl;
+  std::cout << "Length of Motion: " << formulation.params_.GetTotalTime() << std::endl;
+
+  int i = 4;
+  // for(int i = 0; i < nlp.GetIterationCount(); i++){
+    nlp.SetOptVariables(i);
+    auto variable_values = nlp.GetVariableValues();
+    auto constraints = nlp.EvaluateConstraints(variable_values.data());
+
+    std::cout << std::endl << "Accessing Opt Variables" << std::endl;
+    auto variables = nlp.GetOptVariables()->GetComponents();
+    for(auto &v: variables){
+      std::cout << v->GetName() << ", " << v->GetRows() << std::endl;
+      // if(v->GetName() == "ee-motion-lin_0"){
+      //   int i = 0;
+      //   std::cout << v->GetValues() << std::endl;
+      // }
+    }
+
+    std::cout << std::endl << "Accessing Costs" << std::endl;
+    auto costs = nlp.GetCosts().GetComponents();
+    for(auto &c: costs){
+      std::cout << c->GetName() << ", " << c->GetRows() << std::endl;
+    }
+
+    std::cout << std::endl << "Accessing Constraints" << std::endl;
+    auto constraint_components = nlp.GetConstraints().GetComponents();
+    for(auto &constraint: constraint_components){
+      std::cout << constraint->GetName() << ", " << constraint->GetRows() << std::endl;
+    }
+
+    std::cout << "Solution" << std::endl;
+    std::cout << solution.base_linear_->GetPoint(2).p() << std::endl;
+    nlp.SetOptVariables(10);
+    std::cout << std::endl << solution.base_linear_->GetPoint(2).p() << std::endl;
+    nlp.SetOptVariables(4);
+    std::cout << std::endl << solution.base_linear_->GetPoint(2).p() << std::endl;
 
   return 0;
 }
